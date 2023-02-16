@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Пример использования Web Worker </title>
+
+    <link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="PWA Workshop" />
+    <meta name="apple-mobile-web-app-title" content="PWA Workshop" />
+    <meta name="msapplication-starturl" content="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <script src="scripts.js"></script>
+
+</head>
+
+<body>
+    <button onclick="sendMessageToWorker()">Отправить "Привет"</button>
+    <button onclick="askWorkerRecurringTask()">Рекурсивная задача (таймер)</button>
+    <a href="index.html">Контент</a>
+    <a href="pwa-logo192.png">Изображение</a>
+    <br>
+    <textarea style="width:200px; height: 60px;" id="areaLocal" placeholder="Напишите сообщение здесь Local"></textarea>
+    <br>
+    <textarea style="width:200px; height: 60px;" id="areaSession" placeholder="Напишите сообщение здесь Session"></textarea>
+
+    <button onclick="localStorage.removeItem('area1');areaLocal.value='';
+    sessionStorage.removeItem('area2');areaSession.value=''">Очистить</button>
+
+    <script>
+        areaLocal.value = localStorage.getItem('area1');
+        areaSession.value = sessionStorage.getItem('area2');
+        areaLocal.oninput = () => {
+            localStorage.setItem('area1', areaLocal.value)
+        };
+        areaSession.oninput = () => {
+            sessionStorage.setItem('area2', areaSession.value)
+        };
+    </script>
+    <output></output>
+</body>
+
+</html>
